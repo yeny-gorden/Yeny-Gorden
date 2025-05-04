@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Gorden</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header><h1>Kalkulator Gorden</h1><nav><a href="index.html">Kembali</a></nav></header>
+  <main>
+    <form id="formKalkulator">
+      <label>Lebar Jendela (cm): <input type="number" id="lebar" required></label>
+      <label>Tinggi Jendela (cm): <input type="number" id="tinggi" required></label>
+      <label>Jenis Gorden:
+        <select id="jenis">
+          <option value="minimalis">Minimalis</option>
+          <option value="mewah">Mewah</option>
+        </select>
+      </label>
+      <button type="submit">Hitung</button>
+    </form>
+    <div id="hasil"></div>
+  </main>
+  <script>
+    document.getElementById('formKalkulator')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const lebar = +document.getElementById('lebar').value;
+      const tinggi = +document.getElementById('tinggi').value;
+      const jenis = document.getElementById('jenis').value;
+      let hargaPerMeter = jenis === 'mewah' ? 85000 : 50000;
+      let total = (lebar / 100) * (tinggi / 100) * hargaPerMeter;
+      document.getElementById('hasil').innerText = `Estimasi Biaya: Rp ${total.toFixed(0)}`;
+    });
+  </script>
+</body>
+</html>
