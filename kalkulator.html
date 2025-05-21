@@ -1,36 +1,782 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <title>Kalkulator Gorden</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeny Gorden Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top instead of center vertically */
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .calculator-container {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 700px; /* Max width for larger screens */
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 25px;
+        }
+
+        .welcome-message {
+            background-color: #333;
+            border-left: 5px solid #4CAF50;
+            padding: 15px;
+            margin-bottom: 25px;
+            border-radius: 5px;
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #b0b0b0;
+        }
+
+        .input-group input[type="number"],
+        .input-group input[type="text"],
+        .input-group select {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 12px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            background-color: #333;
+            color: #f0f0f0;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .input-group input[type="number"]:focus,
+        .input-group input[type="text"]:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .checkbox-group label {
+            margin-bottom: 0;
+            margin-left: 10px; /* Added spacing for checkbox label */
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #333;
+            border-radius: 8px;
+            border: 1px solid #4CAF50;
+        }
+
+        #result h2 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #result p {
+            margin-bottom: 8px;
+            line-height: 1.6;
+        }
+
+        .detail-item {
+            font-size: 14px;
+            color: #ccc;
+            margin-left: 15px;
+        }
+        .detail-item strong { /* Style for the explicit prices */
+            color: #f0f0f0; /* White color for emphasis */
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #f0f0f0;
+            margin-top: 15px;
+            text-align: right;
+        }
+
+        .discounted-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00bcd4; /* Light blue for discounted price */
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #444;
+            margin: 20px 0;
+        }
+
+        .error-message {
+            color: #ff6347; /* Tomato color for errors */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .additional-item-input {
+            display: grid;
+            grid-template-columns: 3fr 1.5fr 1.5fr 0.5fr; /* Name, Price, Quantity, Button */
+            gap: 10px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+
+        .additional-item-input label {
+            text-align: center;
+            margin-bottom: 0; /* Remove default label margin */
+        }
+
+        .remove-item-btn {
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+        .remove-item-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            .calculator-container {
+                padding: 20px;
+            }
+            .input-group input[type="number"],
+            .input-group input[type="text"],
+            .input-group select {
+                width: 100%; /* Full width on smaller screens */
+            }
+            .additional-item-input {
+                grid-template-columns: 1fr; /* Stack inputs vertically on small screens */
+                gap: 5px; /* Smaller gap */
+            }
+            .additional-item-input input,
+            .additional-item-input button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header><h1>Kalkulator Gorden</h1><nav><a href="index.html">Kembali</a></nav></header>
-  <main>
-    <form id="formKalkulator">
-      <label>Lebar Jendela (cm): <input type="number" id="lebar" required></label>
-      <label>Tinggi Jendela (cm): <input type="number" id="tinggi" required></label>
-      <label>Jenis Gorden:
-        <select id="jenis">
-          <option value="minimalis">Minimalis</option>
-          <option value="mewah">Mewah</option>
-        </select>
-      </label>
-      <button type="submit">Hitung</button>
-    </form>
-    <div id="hasil"></div>
-  </main>
-  <script>
-    document.getElementById('formKalkulator')?.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const lebar = +document.getElementById('lebar').value;
-      const tinggi = +document.getElementById('tinggi').value;
-      const jenis = document.getElementById('jenis').value;
-      let hargaPerMeter = jenis === 'mewah' ? 85000 : 50000;
-      let total = (lebar / 100) * (tinggi / 100) * hargaPerMeter;
-      document.getElementById('hasil').innerText = `Estimasi Biaya: Rp ${total.toFixed(0)}`;
-    });
-  </script>
+    <div class="calculator-container">
+        <h1>Yeny Gorden Calculator</h1>
+        <div class="welcome-message">
+            <p>Selamat datang di Kalkulator gorden & blinds! Aplikasi ini akan membantu Anda menghitung perkiraan biaya untuk kebutuhan gorden atau blinds Anda. Cukup masukkan detail yang diperlukan, dan kami akan memberikan estimasi total harga.</p>
+            <p>Yeny Gorden hadir untuk memudahkan Anda dalam merencanakan dekorasi jendela yang sempurna. Hubungi kami melalui <a href="https://wa.me/6289504215020" target="_blank" style="color: #00bcd4; text-decoration: none; font-weight: bold;">WhatsApp di nomor 089504215020</a> jika Anda memerlukan bantuan. Mari mulai menghitung!</p>
+        </div>
+        <div class="input-group">
+            <label for="calcType">Pilih Jenis Kalkulasi:</label>
+            <select id="calcType" onchange="toggleCalcType(); calculatePrice()">
+                <option value="gorden">Gorden</option>
+                <option value="blinds">Blinds By SharpPoint</option>
+            </select>
+        </div>
+
+        <div id="gordenInputs">
+            <div class="input-group">
+                <label for="length">Panjang (L) dalam meter:</label>
+                <input type="number" id="length" step="0.01" min="0" placeholder="Masukkan panjang gorden" oninput="calculatePrice()">
+            </div>
+            <div class="input-group">
+                <label for="height">Tinggi (T) dalam meter:</label>
+                <input type="number" id="height" step="0.01" min="0" placeholder="Masukkan tinggi gorden (untuk bahan lokal)" oninput="calculatePrice()">
+            </div>
+            <div class="input-group">
+                <label for="rpImport">Harga per meter bahan Import:</label>
+                <input type="number" id="rpImport" step="100" min="0" value="150000" placeholder="Harga Import per meter" oninput="calculatePrice()">
+            </div>
+            <div class="input-group">
+                <label for="rpLokal">Harga per meter bahan Lokal:</label>
+                <input type="number" id="rpLokal" step="100" min="0" value="60000" placeholder="Harga Lokal per meter" oninput="calculatePrice()">
+            </div>
+            <div class="input-group">
+                <label for="rpVitraseUtama">Harga per meter bahan Vitrase (Utama):</label>
+                <input type="number" id="rpVitraseUtama" step="100" min="0" value="100000" placeholder="Harga Vitrase Utama per meter" oninput="calculatePrice()">
+            </div>
+
+            <div class="input-group">
+                <label for="materialType">Pilih Jenis Bahan Utama:</label>
+                <select id="materialType" onchange="validateMainModel(); calculatePrice()">
+                    <option value="none">Pilih Bahan Utama</option>
+                    <option value="import">Import</option>
+                    <option value="lokal">Lokal</option>
+                    <option value="vitrase_utama">Vitrase (Utama)</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="modelType">Pilih Model Utama:</label>
+                <select id="modelType" onchange="validateMainModel(); toggleBrecketOptions(); calculatePrice()">
+                    <option value="none">Pilih Model Utama</option>
+                    <option value="smokring">Smokring</option>
+                    <option value="plisket">Plisket</option>
+                    <option value="kupu">Kupu</option>
+                </select>
+            </div>
+
+            <hr>
+
+            <div id="brecketRolletInput" class="input-group hidden">
+                <label for="numBrecketRollet">Jumlah Brecket Rollet (Rp. 15.000/buah):</label>
+                <input type="number" id="numBrecketRollet" step="1" min="0" value="0" oninput="calculatePrice()">
+            </div>
+            <div id="brecketRellInput" class="input-group hidden">
+                <label for="numBrecketRell">Jumlah Brecket Rell (Rp. 7.000/buah):</label>
+                <input type="number" id="numBrecketRell" step="1" min="0" value="0" oninput="calculatePrice()">
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="addVitrase" onchange="toggleVitraseOptions(); calculatePrice()">
+                <label for="addVitrase">Tambahkan Vitrase Lapis Dalam?</label>
+            </div>
+
+            <div id="vitraseOptions" class="hidden">
+                <div class="input-group">
+                    <label for="rpVitraseTambahan">Harga per meter bahan Vitrase Lapis Dalam:</label>
+                    <input type="number" id="rpVitraseTambahan" step="100" min="0" value="100000" placeholder="Harga Vitrase Lapis Dalam per meter" oninput="calculatePrice()">
+                </div>
+                <div class="input-group">
+                    <label for="modelVitraseType">Pilih Model Vitrase Lapis Dalam:</label>
+                    <select id="modelVitraseType" onchange="toggleBrecketOptions(); calculatePrice()">
+                        <option value="none">Pilih Model Vitrase Lapis Dalam</option>
+                        <option value="plisket">Plisket</option>
+                        <option value="kupu">Kupu</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div id="blindsInputs" class="hidden">
+            <div class="input-group">
+                <label for="blindsLength">Panjang (L) Blinds dalam meter:</label>
+                <input type="number" id="blindsLength" step="0.01" min="0" placeholder="Masukkan panjang blinds" oninput="calculatePrice()">
+            </div>
+            <div class="input-group">
+                <label for="blindsHeight">Tinggi (T) Blinds dalam meter:</label>
+                <input type="number" id="blindsHeight" step="0.01" min="0" placeholder="Masukkan tinggi blinds" oninput="calculatePrice()">
+            </div>
+            <div class="input-group">
+                <label for="rpBlinds">Harga per meter persegi (Rp.) Blinds:</label>
+                <input type="number" id="rpBlinds" step="100" min="0" placeholder="Harga per meter persegi blinds" oninput="calculatePrice()">
+            </div>
+
+            <hr>
+            <h3>Item Tambahan (Opsional)</h3>
+            <div class="additional-item-input hidden" id="additionalItemHeaders">
+                <label>Nama Item</label>
+                <label>Harga Satuan (Rp.)</label>
+                <label>Kuantitas</label>
+                <div></div>
+            </div>
+            <div id="additionalItemsContainer">
+            </div>
+            <button type="button" onclick="addAdditionalItemInput()">Tambah Item Lain</button>
+
+        </div>
+        <hr>
+
+        <div id="result">
+            <h2>Detail Perhitungan</h2>
+            <div id="calculationDetails">
+            </div>
+            <hr>
+            <p class="total-price">Total Harga: <span id="totalPrice">Rp. 0</span></p>
+            <p id="errorMessage" class="error-message"></p>
+        </div>
+    </div>
+
+    <script>
+        function toggleCalcType() {
+            const calcType = document.getElementById('calcType').value;
+            const gordenInputs = document.getElementById('gordenInputs');
+            const blindsInputs = document.getElementById('blindsInputs');
+            const errorMessage = document.getElementById('errorMessage');
+            const additionalItemsContainer = document.getElementById('additionalItemsContainer');
+            const additionalItemHeaders = document.getElementById('additionalItemHeaders');
+
+            errorMessage.textContent = ''; // Clear any previous error
+
+            if (calcType === 'gorden') {
+                gordenInputs.classList.remove('hidden');
+                blindsInputs.classList.add('hidden');
+                // Clear and hide additional items for blinds when switching to gorden
+                additionalItemsContainer.innerHTML = ''; 
+                additionalItemHeaders.classList.add('hidden');
+            } else { // calcType === 'blinds'
+                gordenInputs.classList.add('hidden');
+                blindsInputs.classList.remove('hidden');
+                // Do NOT add initial input for blinds. They will be added only on click.
+                additionalItemsContainer.innerHTML = ''; // Ensure it's empty when switching
+                additionalItemHeaders.classList.add('hidden'); // Ensure headers are hidden initially
+            }
+            // Clear results when switching calculation type
+            document.getElementById('totalPrice').textContent = 'Rp. 0';
+            // document.getElementById('finalPrice').textContent = 'Rp. 0'; // Dihapus karena diskon tidak ada
+            document.getElementById('calculationDetails').innerHTML = '';
+            toggleBrecketOptions(); // Also reset brecket options when changing type
+            toggleVitraseOptions(); // Also reset vitrase options when changing type
+        }
+
+        function toggleVitraseOptions() {
+            const vitraseOptions = document.getElementById('vitraseOptions');
+            const addVitraseCheckbox = document.getElementById('addVitrase');
+            if (addVitraseCheckbox.checked) {
+                vitraseOptions.classList.remove('hidden');
+            } else {
+                vitraseOptions.classList.add('hidden');
+                // Reset vitrase inputs if unchecked
+                document.getElementById('rpVitraseTambahan').value = '100000'; // Set to default
+                document.getElementById('modelVitraseType').value = 'none';
+            }
+            document.getElementById('errorMessage').textContent = ''; // Clear error when toggling
+            toggleBrecketOptions(); // Re-evaluate brecket options after vitrase toggle
+        }
+
+        function toggleBrecketOptions() {
+            const modelType = document.getElementById('modelType').value;
+            const modelVitraseType = document.getElementById('modelVitraseType').value;
+            const addVitrase = document.getElementById('addVitrase').checked;
+
+            const brecketRolletInputDiv = document.getElementById('brecketRolletInput');
+            const brecketRellInputDiv = document.getElementById('brecketRellInput');
+
+            // Reset inputs
+            document.getElementById('numBrecketRollet').value = 0;
+            document.getElementById('numBrecketRell').value = 0;
+            
+            // Hide all first
+            brecketRolletInputDiv.classList.add('hidden');
+            brecketRellInputDiv.classList.add('hidden');
+
+            // Show based on model type
+            if (modelType === 'smokring') {
+                brecketRolletInputDiv.classList.remove('hidden');
+            } else if (modelType === 'plisket' || (addVitrase && modelVitraseType === 'plisket')) {
+                // Show Brecket Rell if main model is Plisket OR (vitrase is added AND vitrase model is Plisket)
+                brecketRellInputDiv.classList.remove('hidden');
+            }
+        }
+
+
+        function validateMainModel() {
+            const materialType = document.getElementById('materialType').value;
+            const modelType = document.getElementById('modelType').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (modelType === 'kupu' && materialType !== 'vitrase_utama') {
+                errorMessage.textContent = 'Model Kupu untuk Bahan Utama hanya dapat dipilih jika Jenis Bahan Utama adalah Vitrase (Utama).';
+                document.getElementById('modelType').value = 'none'; // Reset model choice
+            } else {
+                errorMessage.textContent = ''; // Clear error if valid
+            }
+            toggleBrecketOptions(); // Re-evaluate brecket options after model validation
+        }
+
+        let itemCounter = 0; // To give unique IDs to additional items
+
+        function addAdditionalItemInput() {
+            itemCounter++;
+            const container = document.getElementById('additionalItemsContainer');
+            const additionalItemHeaders = document.getElementById('additionalItemHeaders');
+
+            // Show headers if they are hidden
+            additionalItemHeaders.classList.remove('hidden');
+
+            const div = document.createElement('div');
+            div.classList.add('additional-item-input');
+            div.setAttribute('data-item-id', itemCounter);
+
+            div.innerHTML = `
+                <input type="text" id="itemName_${itemCounter}" placeholder="Nama Item" oninput="calculatePrice()">
+                <input type="number" id="itemPrice_${itemCounter}" step="100" min="0" placeholder="Harga Satuan (Rp.)" oninput="calculatePrice()">
+                <input type="number" id="itemQuantity_${itemCounter}" step="1" min="1" value="1" placeholder="Kuantitas" oninput="calculatePrice()">
+                <button type="button" class="remove-item-btn" onclick="removeAdditionalItem(${itemCounter})">Hapus</button>
+            `;
+            container.appendChild(div);
+            calculatePrice(); // Recalculate when a new item is added
+        }
+
+        function removeAdditionalItem(id) {
+            const itemToRemove = document.querySelector(`.additional-item-input[data-item-id="${id}"]`);
+            if (itemToRemove) {
+                itemToRemove.remove();
+                calculatePrice(); // Recalculate when an item is removed
+
+                // Hide headers if no additional items are left
+                const container = document.getElementById('additionalItemsContainer');
+                const additionalItemHeaders = document.getElementById('additionalItemHeaders');
+                if (container.children.length === 0) {
+                    additionalItemHeaders.classList.add('hidden');
+                }
+            }
+        }
+
+        function calculatePrice() {
+            const calcType = document.getElementById('calcType').value;
+            // Diskon dihapus dari sini
+            // const discount = parseFloat(document.getElementById('discount').value);
+
+            let totalPrice = 0;
+            let detailsHtml = '';
+            let error = '';
+
+            document.getElementById('errorMessage').textContent = ''; // Clear previous error
+
+            if (calcType === 'gorden') {
+                const L = parseFloat(document.getElementById('length').value);
+                const T = parseFloat(document.getElementById('height').value);
+                const rpImport = parseFloat(document.getElementById('rpImport').value);
+                const rpLokal = parseFloat(document.getElementById('rpLokal').value);
+                const rpVitraseUtama = parseFloat(document.getElementById('rpVitraseUtama').value);
+                const materialType = document.getElementById('materialType').value;
+                const modelType = document.getElementById('modelType').value;
+                
+                const numBrecketRollet = parseInt(document.getElementById('numBrecketRollet').value) || 0;
+                const numBrecketRell = parseInt(document.getElementById('numBrecketRell').value) || 0;
+
+                const addVitrase = document.getElementById('addVitrase').checked;
+                const rpVitraseTambahan = parseFloat(document.getElementById('rpVitraseTambahan').value);
+                const modelVitraseType = document.getElementById('modelVitraseType').value;
+                
+
+                let totalFabricUsage = 0; // For sewing cost
+
+                // --- GORDEN VALIDATION ---
+                if (isNaN(L) || L <= 0) {
+                    error = 'Harap masukkan panjang (L) yang valid untuk gorden.';
+                } else if (materialType === 'none') {
+                    error = 'Harap pilih jenis bahan utama gorden.';
+                } else if (modelType === 'none') {
+                    error = 'Harap pilih jenis model utama gorden.';
+                } else if (materialType === 'lokal' && (isNaN(T) || T <= 0)) {
+                    error = 'Untuk bahan lokal gorden, harap masukkan tinggi (T) yang valid.';
+                } else if (modelType === 'kupu' && materialType !== 'vitrase_utama') {
+                    error = 'Model Kupu untuk Bahan Utama gorden hanya dapat dipilih jika Jenis Bahan Utama adalah Vitrase (Utama).';
+                }
+
+                if (addVitrase) {
+                    if (isNaN(rpVitraseTambahan) || rpVitraseTambahan <= 0) {
+                        error = 'Harap masukkan harga bahan Vitrase Lapis Dalam yang valid.';
+                    } else if (modelVitraseType === 'none') {
+                        error = 'Harap pilih model untuk Vitrase Lapis Dalam.';
+                    }
+                }
+
+                if (error) {
+                    displayError(error);
+                    return;
+                }
+
+                // --- MAIN GORDEN MATERIAL CALCULATION ---
+                let mainMaterialCost = 0;
+                let mainFabricLength = 0;
+
+                if (materialType === 'import') {
+                    if (isNaN(rpImport) || rpImport <= 0) {
+                        error = 'Harap masukkan harga bahan Import yang valid.';
+                    } else {
+                        // Menggunakan rumus yang disimpan: (Lebar Kusen + 0.2) * 3 = Total Meter
+                        mainFabricLength = (L + 0.2) * 3;
+                        mainMaterialCost = mainFabricLength * rpImport;
+                        detailsHtml += `<p><strong>Biaya Bahan Utama Gorden (Import):</strong> <strong style="color:#f0f0f0;">Rp. ${mainMaterialCost.toLocaleString('id-ID')}</strong></p>`;
+                    }
+                } else if (materialType === 'lokal') {
+                    if (isNaN(rpLokal) || rpLokal <= 0) {
+                        error = 'Harap masukkan harga bahan Lokal yang valid.';
+                    } else {
+                        const A = (L + 0.2) / 0.4;
+                        const B = Math.ceil(A); // Round up
+                        mainFabricLength = B * (T + 0.3); // Total meters of material used
+                        mainMaterialCost = mainFabricLength * rpLokal;
+                        detailsHtml += `<p><strong>Biaya Bahan Utama Gorden (Lokal):</strong> <strong style="color:#f0f0f0;">Rp. ${mainMaterialCost.toLocaleString('id-ID')}</strong></p>`;
+                    }
+                } else if (materialType === 'vitrase_utama') {
+                    if (isNaN(rpVitraseUtama) || rpVitraseUtama <= 0) {
+                        error = 'Harap masukkan harga bahan Vitrase Utama yang valid.';
+                    } else {
+                        // Menggunakan rumus yang disimpan: (Lebar Kusen + 0.2) * 3 = Total Meter
+                        mainFabricLength = (L + 0.2) * 3;
+                        mainMaterialCost = mainFabricLength * rpVitraseUtama;
+                        detailsHtml += `<p><strong>Biaya Bahan Utama Gorden (Vitrase):</strong> <strong style="color:#f0f0f0;">Rp. ${mainMaterialCost.toLocaleString('id-ID')}</strong></p>`;
+                    }
+                }
+
+                if (error) {
+                    displayError(error);
+                    return;
+                }
+                totalPrice += mainMaterialCost;
+                totalFabricUsage += mainFabricLength;
+
+                // --- MAIN GORDEN MODEL CALCULATION ---
+                let mainModelCost = 0;
+                detailsHtml += `<p><strong>Biaya Model Utama Gorden (${modelType}):</strong></p>`;
+                if (modelType === 'smokring') {
+                    // Smokring
+                    const smokringCount = Math.ceil(L * 24 / 2) * 2; // Round up to nearest even number
+                    const smokringPrice = smokringCount * 4500;
+                    mainModelCost += smokringPrice;
+                    detailsHtml += `<p class="detail-item">- Smokring: <strong style="color:#f0f0f0;">Rp. ${smokringPrice.toLocaleString('id-ID')}</strong></p>`;
+
+                    // Rollet (Simplified)
+                    let rolletLength = L < 1 ? 1 : L; // Minimum 1m
+                    let rolletPrice = rolletLength * 65000;
+                    mainModelCost += rolletPrice;
+                    detailsHtml += `<p class="detail-item">- Rollet: <strong style="color:#f0f0f0;">Rp. ${rolletPrice.toLocaleString('id-ID')}</strong></p>`;
+
+                    // Hook & Tali
+                    mainModelCost += 37500; // Hook
+                    mainModelCost += 35000; // Tali
+                    detailsHtml += `<p class="detail-item">- Hook: <strong style="color:#f0f0f0;">Rp. 37.500</strong></p>`;
+                    detailsHtml += `<p class="detail-item">- Tali: <strong style="color:#f0f0f0;">Rp. 35.000</strong></p>`;
+
+                    // Brecket Rollet (Input Jumlah)
+                    if (numBrecketRollet > 0) {
+                        const brecketRolletCost = numBrecketRollet * 15000;
+                        mainModelCost += brecketRolletCost;
+                        detailsHtml += `<p class="detail-item">- Brecket Rollet: <strong style="color:#f0f0f0;">Rp. ${brecketRolletCost.toLocaleString('id-ID')}</strong></p>`;
+                    }
+
+                } else if (modelType === 'plisket') {
+                    // Rell (Simplified)
+                    let rellLength = L < 1 ? 1 : L; // Minimum 1m
+                    let rellPrice = rellLength * 45000;
+                    mainModelCost += rellPrice;
+                    detailsHtml += `<p class="detail-item">- Rell: <strong style="color:#f0f0f0;">Rp. ${rellPrice.toLocaleString('id-ID')}</strong></p>`;
+
+                    // Hook & Tali
+                    mainModelCost += 37500; // Hook
+                    mainModelCost += 35000; // Tali
+                    detailsHtml += `<p class="detail-item">- Hook: <strong style="color:#f0f0f0;">Rp. 37.500</strong></p>`;
+                    detailsHtml += `<p class="detail-item">- Tali: <strong style="color:#f0f0f0;">Rp. 35.000</strong></p>`;
+
+                    // Brecket Rell (Input Jumlah)
+                    if (numBrecketRell > 0) {
+                        const brecketRellCost = numBrecketRell * 7000;
+                        mainModelCost += brecketRellCost;
+                        detailsHtml += `<p class="detail-item">- Brecket Rell: <strong style="color:#f0f0f0;">Rp. ${brecketRellCost.toLocaleString('id-ID')}</strong></p>`;
+                    }
+
+                } else if (modelType === 'kupu') {
+                    // Stick (specific to Kupu model)
+                    mainModelCost += 55000; // Stick
+                    detailsHtml += `<p class="detail-item">- Stick: <strong style="color:#f0f0f0;">Rp. 55.000</strong></p>`;
+                }
+
+                totalPrice += mainModelCost;
+
+                // --- ADDITIONAL VITRASE CALCULATION (IF ADDED) ---
+                let additionalVitraseCost = 0;
+                let additionalVitraseFabricLength = 0;
+                if (addVitrase) {
+                    // Menggunakan rumus yang disimpan: (Lebar Kusen + 0.2) * 3 = Total Meter
+                    additionalVitraseFabricLength = (L + 0.2) * 3;
+                    // Note: additionalVitraseCost will include model cost as well
+                    let vitraseMaterialOnlyCost = additionalVitraseFabricLength * rpVitraseTambahan;
+                    additionalVitraseCost += vitraseMaterialOnlyCost;
+
+                    detailsHtml += `<hr><p><strong>Biaya Bahan Vitrase Lapis Dalam:</strong> <strong style="color:#f0f0f0;">Rp. ${vitraseMaterialOnlyCost.toLocaleString('id-ID')}</strong></p>`;
+
+                    // Additional Vitrase Model
+                    detailsHtml += `<p><strong>Biaya Model Vitrase Lapis Dalam (${modelVitraseType}):</strong></p>`;
+                    if (modelVitraseType === 'plisket') {
+                        // Rell Vitrase (Simplified)
+                        let rellVitraseLength = L < 1 ? 1 : L; // Minimum 1m
+                        let rellVitrasePrice = rellVitraseLength * 45000;
+                        additionalVitraseCost += rellVitrasePrice;
+                        detailsHtml += `<p class="detail-item">- Rell Vitrase: <strong style="color:#f0f0f0;">Rp. ${rellVitrasePrice.toLocaleString('id-ID')}</strong></p>`;
+
+                        // Hook & Tali (Vitrase Lapis Dalam)
+                        additionalVitraseCost += 37500; // Hook
+                        additionalVitraseCost += 35000; // Tali
+                        detailsHtml += `<p class="detail-item">- Hook Vitrase: <strong style="color:#f0f0f0;">Rp. 37.500</strong></p>`;
+                        detailsHtml += `<p class="detail-item">- Tali Vitrase: <strong style="color:#f0f0f0;">Rp. 35.000</strong></p>`;
+
+                        // Brecket Rell (Input Jumlah) - Shared with main gorden if plisket vitrase
+                        if (numBrecketRell > 0) { 
+                            const brecketRellCost = numBrecketRell * 7000; 
+                        }
+
+                    } else if (modelVitraseType === 'kupu') {
+                        // Stick (specific to Kupu model)
+                        additionalVitraseCost += 55000; // Stick
+                        detailsHtml += `<p class="detail-item">- Stick Vitrase: <strong style="color:#f0f0f0;">Rp. 55.000</strong></p>`;
+                    }
+                }
+
+                totalPrice += additionalVitraseCost;
+                totalFabricUsage += additionalVitraseFabricLength;
+
+                // --- SEWING & INSTALLATION GORDEN CALCULATION ---
+                let sewingCost = 0;
+                let installationCost = 0;
+
+                if (totalFabricUsage > 0) {
+                    sewingCost = totalFabricUsage * 23000;
+                    detailsHtml += `<hr><p><strong>Biaya Jahit Gorden:</strong> <strong style="color:#f0f0f0;">Rp. ${sewingCost.toLocaleString('id-ID')}</strong></p>`;
+                    totalPrice += sewingCost;
+                }
+
+                installationCost = 30000;
+                detailsHtml += `<p><strong>Biaya Instalasi Gorden:</strong> <strong style="color:#f0f0f0;">Rp. 30.000</strong></p>`;
+                totalPrice += installationCost;
+
+            } else { // calcType === 'blinds'
+                const blindsL = parseFloat(document.getElementById('blindsLength').value);
+                const blindsT = parseFloat(document.getElementById('blindsHeight').value);
+                const rpBlinds = parseFloat(document.getElementById('rpBlinds').value);
+
+                // --- BLINDS VALIDATION ---
+                if (isNaN(blindsL) || blindsL <= 0) {
+                    error = 'Harap masukkan panjang (L) yang valid untuk Blinds.';
+                } else if (isNaN(blindsT) || blindsT <= 0) {
+                    error = 'Harap masukkan tinggi (T) yang valid untuk Blinds.';
+                } else if (isNaN(rpBlinds) || rpBlinds <= 0) {
+                    error = 'Harap masukkan harga per meter persegi Blinds yang valid.';
+                }
+
+                if (error) {
+                    displayError(error);
+                    return;
+                }
+
+                // --- BLINDS CALCULATION ---
+                const blindsArea = blindsL * blindsT;
+                const blindsCost = blindsArea * rpBlinds;
+                totalPrice += blindsCost;
+
+                detailsHtml += `<p><strong>Biaya Blinds By SharpPoint:</strong> <strong style="color:#f0f0f0;">Rp. ${blindsCost.toLocaleString('id-ID')}</strong></p>`;
+
+                // --- ADDITIONAL BLINDS ITEMS CALCULATION ---
+                let additionalBlindsItemsCost = 0;
+                const additionalItemInputs = document.querySelectorAll('#additionalItemsContainer .additional-item-input');
+                
+                // Only add heading if there are actual items with some content
+                let hasActualAdditionalItems = false; 
+
+                additionalItemInputs.forEach(itemDiv => {
+                    const itemId = itemDiv.getAttribute('data-item-id');
+                    const itemNameInput = document.getElementById(`itemName_${itemId}`);
+                    const itemPriceInput = document.getElementById(`itemPrice_${itemId}`);
+                    const itemQuantityInput = document.getElementById(`itemQuantity_${itemId}`);
+
+                    const itemName = itemNameInput ? itemNameInput.value.trim() : '';
+                    const itemPrice = itemPriceInput ? parseFloat(itemPriceInput.value) : NaN;
+                    const itemQuantity = itemQuantityInput ? parseInt(itemQuantityInput.value) : NaN;
+
+                    // Validasi dan hitung hanya jika ada nilai yang diisi
+                    if (itemName || (!isNaN(itemPrice) && itemPrice > 0) || (!isNaN(itemQuantity) && itemQuantity > 0)) {
+                        if (!itemName) {
+                            error = 'Harap masukkan nama untuk item tambahan yang belum lengkap.';
+                        } else if (isNaN(itemPrice) || itemPrice <= 0) {
+                            error = `Harap masukkan harga satuan yang valid (lebih dari 0) untuk item "${itemName}".`;
+                        } else if (isNaN(itemQuantity) || itemQuantity <= 0) {
+                            error = `Harap masukkan kuantitas yang valid (lebih dari 0) untuk item "${itemName}".`;
+                        }
+                        
+                        if (error) { 
+                            return; 
+                        }
+
+                        const itemTotalCost = itemPrice * itemQuantity;
+                        additionalBlindsItemsCost += itemTotalCost;
+                        
+                        // Add heading only once and only if there's an actual item
+                        if (!hasActualAdditionalItems) { 
+                            detailsHtml += `<hr><p><strong>Biaya Item Tambahan Blinds:</strong></p>`;
+                            hasActualAdditionalItems = true;
+                        }
+                        detailsHtml += `<p class="detail-item">- ${itemName}: <strong style="color:#f0f0f0;">Rp. ${itemTotalCost.toLocaleString('id-ID')}</strong></p>`;
+                    }
+                });
+                
+                if (error) { 
+                    displayError(error);
+                    return;
+                }
+                totalPrice += additionalBlindsItemsCost;
+
+                // --- INSTALLATION BLINDS CALCULATION ---
+                const installationCostBlinds = 30000;
+                detailsHtml += `<p><strong>Biaya Instalasi Blinds:</strong> <strong style="color:#f0f0f0;">Rp. 30.000</strong></p>`;
+                totalPrice += installationCostBlinds;
+            }
+
+            // --- FINAL CALCULATION (for both Gorden and Blinds) ---
+            // Diskon dihapus
+            // const finalPrice = totalPrice * (1 - discount / 100);
+
+            document.getElementById('totalPrice').textContent = `Rp. ${totalPrice.toLocaleString('id-ID')}`;
+            // document.getElementById('finalPrice').textContent = `Rp. ${finalPrice.toLocaleString('id-ID')}`; // Dihapus karena diskon tidak ada
+            document.getElementById('calculationDetails').innerHTML = detailsHtml;
+        }
+
+        function displayError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('totalPrice').textContent = 'Rp. 0';
+            // document.getElementById('finalPrice').textContent = 'Rp. 0'; // Dihapus karena diskon tidak ada
+            document.getElementById('calculationDetails').innerHTML = '';
+        }
+
+        // Initialize display and calculate on load
+        document.addEventListener('DOMContentLoaded', () => {
+            toggleCalcType(); 
+            calculatePrice();
+        });
+    </script>
 </body>
 </html>
