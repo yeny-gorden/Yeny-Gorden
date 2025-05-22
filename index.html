@@ -3,9 +3,395 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeny Gorden - Solusi Gorden &amp; Vitrase Terbaik</title>
+    <title>Yeny Gorden - Solusi Gorden & Vitrase Terbaik</title>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* Dark background */
+            color: #e0e0e0; /* Light text for dark theme */
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333; /* Darker header */
+            color: #f4f4f4;
+            padding: 1rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            color: #f4f4f4;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #bbb;
+        }
+
+        /* Navigation Styles */
+        nav {
+            background-color: #222; /* Even darker nav */
+            padding: 0.8rem 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a {
+            color: #f4f4f4;
+            text-decoration: none;
+            padding: 0.8rem 1.2rem;
+            display: inline-block;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #444; /* Lighter hover for dark theme */
+            color: #fff;
+        }
+
+        /* Hero Section Styles */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg') no-repeat center center/cover; /* Placeholder hero background */
+            color: #fff;
+            text-align: center;
+            padding: 60px 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .hero p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #6a3a1f; /* Original button color */
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: #8c4c2a; /* Slightly lighter on hover */
+            transform: translateY(-2px);
+        }
+
+        /* Container Styles */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        .section {
+            background-color: #282828; /* Darker section background */
+            padding: 40px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f4f4f4;
+            font-size: 2em;
+            position: relative;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: #6a3a1f;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Product Grid Styles */
+        .produk-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .produk-item {
+            background-color: #333; /* Darker product item */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding-bottom: 20px; /* Add padding for text below image */
+        }
+
+        .produk-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .produk-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid #444;
+        }
+
+        .produk-item h3 {
+            color: #f4f4f4;
+            margin: 20px 10px 10px;
+            font-size: 1.4em;
+        }
+
+        .produk-item p {
+            color: #ccc;
+            padding: 0 15px;
+            font-size: 0.95em;
+        }
+
+        /* Gallery Grid Styles */
+        .galeri-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .galeri-item {
+            background-color: #333; /* Darker gallery item */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .galeri-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .galeri-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Testimonial Styles */
+        blockquote {
+            background-color: #333; /* Darker blockquote */
+            border-left: 5px solid #6a3a1f;
+            margin: 20px 0;
+            padding: 15px 25px;
+            border-radius: 5px;
+            font-style: italic;
+            color: #ccc;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        blockquote p {
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+
+        blockquote cite {
+            display: block;
+            text-align: right;
+            font-style: normal;
+            font-weight: bold;
+            color: #6a3a1f;
+            margin-top: 10px;
+        }
+
+        /* Contact Form Styles */
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #333; /* Darker form background */
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        form p {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #f4f4f4;
+        }
+
+        form input[type="text"],
+        form input[type="email"],
+        form textarea {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #555; /* Darker border */
+            border-radius: 4px;
+            background-color: #444; /* Darker input background */
+            color: #e0e0e0;
+            font-size: 1em;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        form input[type="text"]:focus,
+        form input[type="email"]:focus,
+        form textarea:focus {
+            border-color: #6a3a1f;
+            outline: none;
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        form button.btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333; /* Darker footer */
+            color: #aaa;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 30px;
+            font-size: 0.9em;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Utility Styles */
+        a {
+            color: #8c4c2a; /* Slightly brighter link color */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #a35d36;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero p {
+                font-size: 1em;
+            }
+
+            nav a {
+                padding: 0.8rem 0.8rem;
+                font-size: 0.9em;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .produk-grid, .galeri-grid {
+                grid-template-columns: 1fr; /* Stack columns on smaller screens */
+            }
+
+            .produk-item {
+                margin: 0 auto; /* Center single column items */
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .hero h1 {
+                font-size: 1.8em;
+            }
+
+            .hero p {
+                font-size: 0.9em;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            nav a {
+                flex: 1 1 auto; /* Allow links to wrap and take available space */
+                text-align: center;
+                padding: 0.7rem 0.5rem;
+                font-size: 0.8em;
+            }
+
+            .section {
+                padding: 20px 15px;
+            }
+
+            .produk-item img {
+                height: 180px;
+            }
+
+            .galeri-item img {
+                height: 200px;
+            }
+
+            blockquote {
+                padding: 15px;
+            }
+
+            form input[type="text"],
+            form input[type="email"],
+            form textarea {
+                width: 100%; /* Full width for inputs */
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -16,7 +402,7 @@
 
     <nav>
         <a href="#tentang-kami">Tentang Kami</a>
-        <a href="#produk">Produk &amp; Layanan</a>
+        <a href="#produk">Produk & Layanan</a>
         <a href="#galeri">Galeri</a>
         <a href="#testimonial">Testimonial</a>
         <a href="#kontak">Kontak</a>
@@ -38,7 +424,7 @@
         </div>
 
         <div id="produk" class="section">
-            <h2>Produk &amp; Layanan Kami</h2>
+            <h2>Produk & Layanan Kami</h2>
             <div class="produk-grid">
                 <div class="produk-item">
                    <img src="images/gorden1.jpg" alt="Gorden Minimalis">
@@ -56,19 +442,19 @@
                     <p>Kain tipis transparan yang menambah privasi sekaligus tetap meneruskan cahaya alami ruangan.</p>
                 </div>
                 <div class="produk-item">
-                    <img src="images/gorden4.jpg" alt="Roll Blind &amp; Vertical Blind">
-                    <h3>Roll Blind &amp; Vertical Blind</h3>
+                    <img src="images/gorden4.jpg" alt="Roll Blind & Vertical Blind">
+                    <h3>Roll Blind & Vertical Blind</h3>
                     <p>Solusi praktis dan modern untuk kantor, apartemen, atau hunian dengan desain minimalis.</p>
                 </div>
             </div>
-            <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #6a3a1f;">
+            <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #8c4c2a;">
                 Kami juga melayani jasa pengukuran dan pemasangan gorden di lokasi Anda dengan tim yang berpengalaman.
             </p>
         </div>
 
         <div id="galeri" class="section">
             <h2>Galeri Proyek Kami</h2>
-            <p style="text-align: center; margin-bottom: 25px;">
+            <p style="text-align: center; margin-bottom: 25px; color: #ccc;">
                 Lihat hasil-hasil pemasangan gorden dan vitrase kami yang telah mempercantik berbagai ruangan dan memberikan inspirasi untuk Anda.
             </p>
             <div class="galeri-grid">
@@ -78,9 +464,9 @@
                 <div class="galeri-item"><img src="images/kantor2.jpg" alt="Vitrase Hotel"></div>
                 <div class="galeri-item"><img src="images/hotel.jpg" alt="Gorden Rumah Modern"></div>
                 <div class="galeri-item"><img src="images/villa.jpg" alt="Roll Blind Kantor"></div>
-                <div class="galeri-item"><img src="images/" alt="Gorden Ruang Tamu"></div>
-                <div class="galeri-item"><img src="images/" alt="Gorden Villa"></div>
-                <div class="galeri-item"><img src="images/" alt="Gorden Kamar Tidur"></div>
+                <div class="galeri-item"><img src="images/gorden5.jpg" alt="Gorden Ruang Tamu"></div>
+                <div class="galeri-item"><img src="images/gorden6.jpg" alt="Gorden Villa"></div>
+                <div class="galeri-item"><img src="images/gorden7.jpg" alt="Gorden Kamar Tidur"></div>
             </div>
         </div>
 
@@ -114,18 +500,18 @@
 
         <div id="kontak" class="section">
             <h2>Hubungi Kami</h2>
-            <p style="text-align: center;">
+            <p style="text-align: center; color: #ccc;">
                 Siap untuk mempercantik ruangan Anda dengan gorden dan vitrase terbaik? Jangan ragu hubungi Yeny Gorden sekarang!
             </p>
             <ul style="list-style-type: none; padding: 0; text-align: center; font-size: 1.1em;">
-                <li style="margin-bottom: 5px;"><strong>Telepon/WhatsApp:</strong></li>
-                <li style="margin-bottom: 15px;"><a href="https://wa.me/6289504215020" style="color: #6a3a1f; text-decoration: none;">0895-0421-5020</a></li>
-                <li style="margin-bottom: 5px;"><strong>Email:</strong></li>
-                <li style="margin-bottom: 15px;"><a href="mailto:yenygorden@gmail.com" style="color: #6a3a1f; text-decoration: none;">yenygorden@gmail.com</a></li>
-                <li style="margin-bottom: 5px;"><strong>Alamat:</strong></li>
-                <li>Jl. Jend. Sudirman, RT.5/RW.1, Kalibakal, Berkoh, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53146</li>
+                <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Telepon/WhatsApp:</strong></li>
+                <li style="margin-bottom: 15px;"><a href="https://wa.me/6289504215020" style="color: #8c4c2a; text-decoration: none;">0895-0421-5020</a></li>
+                <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Email:</strong></li>
+                <li style="margin-bottom: 15px;"><a href="mailto:yenygorden@gmail.com" style="color: #8c4c2a; text-decoration: none;">yenygorden@gmail.com</a></li>
+                <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Alamat:</strong></li>
+                <li style="color: #ccc;">Jl. Jend. Sudirman, RT.5/RW.1, Kalibakal, Berkoh, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53146</li>
             </ul>
-            <p style="text-align: center; margin-top: 30px;">Atau isi formulir di bawah ini dan kami akan segera menghubungi Anda:</p>
+            <p style="text-align: center; margin-top: 30px; color: #ccc;">Atau isi formulir di bawah ini dan kami akan segera menghubungi Anda:</p>
             <form action="https://formspree.io/f/mvganado" method="POST">
                 <p><label for="nama">Nama Lengkap:</label><br><input type="text" id="nama" name="Nama Pengirim" required=""></p>
                 <p><label for="email">Alamat Email:</label><br><input type="email" id="email" name="_replyto" required=""></p>
@@ -139,8 +525,6 @@
         <p>© 2020 Yeny Gorden.</p>
         <p>Dibuat dengan ❤️ di Purwokerto.</p>
     </footer>
-
-
 
 </body>
 </html>
