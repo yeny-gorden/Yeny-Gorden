@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yeny Gorden - Solusi Gorden & Vitrase Terbaik</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <style>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
         /* CSS Sederhana untuk Tampilan Awal */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Font yang lebih modern */
@@ -165,6 +166,31 @@
             color: #555;
         }
 
+        /* Modifikasi untuk grid galeri agar 3 kolom */
+        .galeri-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* 3 kolom */
+            gap: 20px; /* Jarak antar gambar */
+        }
+
+        .galeri-item {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .galeri-item:hover {
+            transform: scale(1.03);
+        }
+
+        .galeri-item img {
+            width: 100%;
+            height: 250px; /* Tinggi tetap untuk gambar galeri */
+            object-fit: cover;
+            display: block;
+        }
+
         blockquote {
             background-color: #fefcf9;
             border-left: 5px solid #cf9b61;
@@ -261,6 +287,9 @@
             .produk-grid {
                 grid-template-columns: 1fr; /* Satu kolom di layar kecil */
             }
+            .galeri-grid {
+                grid-template-columns: 1fr; /* Satu kolom di layar kecil untuk galeri */
+            }
         }
     </style>
 </head>
@@ -328,11 +357,16 @@
             <p style="text-align: center; margin-bottom: 25px;">
                 Lihat hasil-hasil pemasangan gorden dan vitrase kami yang telah mempercantik berbagai ruangan dan memberikan inspirasi untuk Anda.
             </p>
-            <div class="produk-grid">
-                <div class="produk-item"><img src="https://via.placeholder.com/280x180/f0e0d0/000000?text=Proyek+Rumah+1" alt="Gorden Rumah Minimalis"></div>
-                <div class="produk-item"><img src="images/kemenagbms.jpg" alt="Gorden Kantor Modern"></div>
-                <div class="produk-item"><img src="https://via.placeholder.com/280x180/d0c0b0/000000?text=Proyek+Apartemen+3" alt="Gorden Apartemen Klasik"></div>
-                <div class="produk-item"><img src="https://via.placeholder.com/280x180/c0b0a0/000000?text=Proyek+Hotel+4" alt="Vitrase Hotel"></div>
+            <div class="galeri-grid">
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/f0e0d0/000000?text=Proyek+Rumah+Minimalis+1" alt="Gorden Rumah Minimalis"></div>
+                <div class="galeri-item"><img src="images/kemenagbms.jpg" alt="Gorden Kantor Modern"></div>
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/d0c0b0/000000?text=Proyek+Apartemen+Klasik+3" alt="Gorden Apartemen Klasik"></div>
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/c0b0a0/000000?text=Proyek+Hotel+4" alt="Vitrase Hotel"></div>
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/b0a090/000000?text=Proyek+Rumah+Modern+5" alt="Gorden Rumah Modern"></div>
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/a09080/000000?text=Proyek+Kantor+6" alt="Roll Blind Kantor"></div>
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/908070/000000?text=Proyek+Rumah+Tinggal+7" alt="Gorden Ruang Tamu"></div>
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/807060/000000?text=Proyek+Villa+8" alt="Gorden Villa"></div>
+                <div class="galeri-item"><img src="https://via.placeholder.com/400x250/706050/000000?text=Proyek+Kamar+Tidur+9" alt="Gorden Kamar Tidur"></div>
             </div>
         </div>
 
@@ -350,6 +384,18 @@
                 <p>"Pilihan gordennya sangat beragam, jadi bisa disesuaikan dengan tema rumah. Harganya juga kompetitif. Rekomendasi banget untuk yang cari gorden berkualitas!"</p>
                 <cite>- Keluarga Susanto, Kebumen</cite>
             </blockquote>
+            <blockquote>
+                <p>"Layanan Yeny Gorden benar-benar profesional, dari konsultasi sampai pemasangan semua berjalan lancar. Hasilnya sesuai harapan, rumah jadi lebih cantik."</p>
+                <cite>- Bapak Budi, Cilacap</cite>
+            </blockquote>
+            <blockquote>
+                <p>"Saya memesan vitrase untuk kantor, hasilnya sangat memuaskan. Materialnya bagus dan pengerjaannya cepat. Pasti akan pesan lagi di sini."</p>
+                <cite>- Mbak Indah, Purbalingga</cite>
+            </blockquote>
+            <blockquote>
+                <p>"Baru kali ini menemukan penyedia gorden yang mau mendengarkan kebutuhan detail pelanggan. Yeny Gorden memberikan solusi terbaik dengan harga yang bersaing."</p>
+                <cite>- Bapak Dani, Kroya</cite>
+            </blockquote>
         </div>
 
         <div id="kontak" class="section">
@@ -358,15 +404,12 @@
                 Siap untuk mempercantik ruangan Anda dengan gorden dan vitrase terbaik? Jangan ragu hubungi Yeny Gorden sekarang!
             </p>
             <ul style="list-style-type: none; padding: 0; text-align: center; font-size: 1.1em;">
-                <li style="margin-bottom: 10px;">
-                    <strong>Telepon/WhatsApp:</strong> <a href="https://wa.me/6289504215020" style="color: #6a3a1f; text-decoration: none;">0895-0421-5020</a>
-                </li>
-                <li style="margin-bottom: 10px;">
-                    <strong>Email:</strong> <a href="mailto:yenygorden@gmail.com" style="color: #6a3a1f; text-decoration: none;">yenygorden@gmail.com</a>
-                </li>
-                <li>
-                    <strong>Alamat:</strong> Jl. Jend. Sudirman, RT.5/RW.1, Kalibakal, Berkoh, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53146
-                </li>
+                <li style="margin-bottom: 5px;"><strong>Telepon/WhatsApp:</strong></li>
+                <li style="margin-bottom: 15px;"><a href="https://wa.me/6289504215020" style="color: #6a3a1f; text-decoration: none;">0895-0421-5020</a></li>
+                <li style="margin-bottom: 5px;"><strong>Email:</strong></li>
+                <li style="margin-bottom: 15px;"><a href="mailto:yenygorden@gmail.com" style="color: #6a3a1f; text-decoration: none;">yenygorden@gmail.com</a></li>
+                <li style="margin-bottom: 5px;"><strong>Alamat:</strong></li>
+                <li>Jl. Jend. Sudirman, RT.5/RW.1, Kalibakal, Berkoh, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53146</li>
             </ul>
             <p style="text-align: center; margin-top: 30px;">Atau isi formulir di bawah ini dan kami akan segera menghubungi Anda:</p>
             <form action="https://formspree.io/f/mvganado" method="POST">
