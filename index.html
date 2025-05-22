@@ -26,15 +26,33 @@
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
         }
 
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
         header h1 {
             margin: 0;
             font-size: 2.5em;
             color: #f4f4f4;
+            display: flex; /* Allow text and logo to align */
+            align-items: center; /* Center vertically */
+            gap: 10px; /* Space between logo and text */
+            margin-bottom: 5px; /* Adjust spacing below h1 */
+        }
+
+        header .logo {
+            height: 60px; /* Adjust as needed */
+            width: auto;
+            vertical-align: middle;
         }
 
         header p {
             font-size: 1.1em;
             color: #bbb;
+            margin-top: 0;
         }
 
         /* Navigation Styles */
@@ -311,6 +329,10 @@
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
+                flex-direction: column; /* Stack logo and text on smaller screens */
+            }
+            header .logo {
+                margin-bottom: 5px; /* Add space below logo when stacked */
             }
 
             .hero h1 {
@@ -396,8 +418,10 @@
 <body>
 
     <header>
-        <h1>Yeny Gorden</h1>
-        <p>Sentuhan Keindahan untuk Setiap Jendela</p>
+        <div class="header-content">
+            <h1><img src="Images/logo.jpg" alt="Yeny Gorden Logo" class="logo"> Yeny Gorden</h1>
+            <p>Sentuhan Keindahan untuk Setiap Jendela</p>
+        </div>
     </header>
 
     <nav>
