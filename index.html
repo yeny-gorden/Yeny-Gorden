@@ -1,554 +1,577 @@
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yeny Gorden - Solusi Gorden & Vitrase Terbaik</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <style>
-        /* General Body Styles */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a; /* Dark background */
-            color: #e0e0e0; /* Light text for dark theme */
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yeny Gorden - Solusi Gorden & Vitrase Terbaik</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<style>
+/* General Body Styles /
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+line-height: 1.6;
+margin: 0;
+padding: 0;
+background-color: #1a1a1a; / Dark background /
+color: #e0e0e0; / Light text for dark theme */
+transition: background-color 0.3s ease, color 0.3s ease;
+}
+    /* Header Styles */
+    header {
+        background-image: url('images/header-bg-new.jpg'); /* Add your header image path here */
+        background-size: cover; /* Cover the entire header area */
+        background-position: center; /* Center the image */
+        color: #f4f4f4;
+        padding: 2rem 0; /* Adjust padding for better visual */
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        position: relative; /* For potential overlay */
+    }
 
-        /* Header Styles */
+    /* Optional: Add a subtle dark overlay for better text readability if needed */
+    header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4); /* Adjust opacity as needed */
+    }
+
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative; /* Ensure content is above the overlay */
+        z-index: 1; /* Ensure content is above the overlay */
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 2.5em;
+        color: #f4f4f4;
+        display: flex; /* Allow text and logo to align */
+        align-items: center; /* Center vertically */
+        gap: 10px; /* Space between logo and text */
+        margin-bottom: 5px; /* Adjust spacing below h1 */
+    }
+
+    header .logo {
+        height: 60px; /* Adjust as needed */
+        width: auto;
+        vertical-align: middle;
+    }
+
+    header p {
+        font-size: 1.1em;
+        color: #bbb;
+        margin-top: 0;
+    }
+
+    /* Navigation Styles */
+    nav {
+        background-color: #222; /* Even darker nav */
+        padding: 0.8rem 0;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    nav a {
+        color: #f4f4f4;
+        text-decoration: none;
+        padding: 0.8rem 1.2rem;
+        display: inline-block;
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    nav a:hover {
+        background-color: #444; /* Lighter hover for dark theme */
+        color: #fff;
+    }
+
+    /* Hero Section Styles */
+    .hero {
+        background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg') no-repeat center center/cover; /* Placeholder hero background */
+        color: #fff;
+        text-align: center;
+        padding: 60px 20px;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    }
+
+    .hero h1 {
+        font-size: 3em;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .hero p {
+        font-size: 1.3em;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        display: inline-block;
+        background-color: #6a3a1f; /* Original button color */
+        color: white;
+        padding: 12px 25px;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        font-weight: bold;
+    }
+
+    .btn:hover {
+        background-color: #8c4c2a; /* Slightly lighter on hover */
+        transform: translateY(-2px);
+    }
+
+    /* Container Styles */
+    .container {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 0 20px;
+    }
+
+    .section {
+        background-color: #282828; /* Darker section background */
+        padding: 40px;
+        margin-bottom: 25px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .section h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #f4f4f4;
+        font-size: 2em;
+        position: relative;
+    }
+
+    .section h2::after {
+        content: '';
+        display: block;
+        width: 60px;
+        height: 3px;
+        background-color: #6a3a1f;
+        margin: 10px auto 0;
+        border-radius: 2px;
+    }
+
+    /* Product Grid Styles */
+    .produk-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .produk-item {
+        background-color: #333; /* Darker product item */
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding-bottom: 20px; /* Add padding for text below image */
+    }
+
+    .produk-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .produk-item img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-bottom: 1px solid #444;
+    }
+
+    .produk-item h3 {
+        color: #f4f4f4;
+        margin: 20px 10px 10px;
+        font-size: 1.4em;
+    }
+
+    .produk-item p {
+        color: #ccc;
+        padding: 0 15px;
+        font-size: 0.95em;
+    }
+
+    /* Gallery Grid Styles */
+    .galeri-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .galeri-item {
+        background-color: #333; /* Darker gallery item */
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .galeri-item:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .galeri-item img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Testimonial Styles */
+    blockquote {
+        background-color: #333; /* Darker blockquote */
+        border-left: 5px solid #6a3a1f;
+        margin: 20px 0;
+        padding: 15px 25px;
+        border-radius: 5px;
+        font-style: italic;
+        color: #ccc;
+        position: relative;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    blockquote p {
+        margin-bottom: 10px;
+        color: #e0e0e0;
+    }
+
+    blockquote cite {
+        display: block;
+        text-align: right;
+        font-style: normal;
+        font-weight: bold;
+        color: #6a3a1f;
+        margin-top: 10px;
+    }
+
+    /* Contact Form Styles */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #333; /* Darker form background */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    form p {
+        margin-bottom: 15px;
+    }
+
+    form label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #f4f4f4;
+    }
+
+    form inputtype="text"],
+    form inputtype="email"],
+    form textarea {
+        width: calc(100% - 20px);
+        padding: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #555; /* Darker border */
+        border-radius: 4px;
+        background-color: #444; /* Darker input background */
+        color: #e0e0e0;
+        font-size: 1em;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+    form inputtype="text"]:focus,
+    form inputtype="email"]:focus,
+    form textarea:focus {
+        border-color: #6a3a1f;
+        outline: none;
+    }
+
+    form textarea {
+        resize: vertical;
+        min-height: 100px;
+    }
+
+    form button.btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1em;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: #333; /* Darker footer */
+        color: #aaa;
+        text-align: center;
+        padding: 1.5rem 0;
+        margin-top: 30px;
+        font-size: 0.9em;
+        box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    footer p {
+        margin: 5px 0;
+    }
+
+    /* Utility Styles */
+    a {
+        color: #8c4c2a; /* Slightly brighter link color */
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #a35d36;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
         header {
-            background-color: #333; /* Darker header */
-            color: #f4f4f4;
-            padding: 1rem 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            padding: 1.5rem 0; /* Adjust padding for smaller screens */
         }
-
-        .header-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
         header h1 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #f4f4f4;
-            display: flex; /* Allow text and logo to align */
-            align-items: center; /* Center vertically */
-            gap: 10px; /* Space between logo and text */
-            margin-bottom: 5px; /* Adjust spacing below h1 */
+            font-size: 2em;
+            flex-direction: column; /* Stack logo and text on smaller screens */
         }
-
         header .logo {
-            height: 60px; /* Adjust as needed */
-            width: auto;
-            vertical-align: middle;
-        }
-
-        header p {
-            font-size: 1.1em;
-            color: #bbb;
-            margin-top: 0;
-        }
-
-        /* Navigation Styles */
-        nav {
-            background-color: #222; /* Even darker nav */
-            padding: 0.8rem 0;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        nav a {
-            color: #f4f4f4;
-            text-decoration: none;
-            padding: 0.8rem 1.2rem;
-            display: inline-block;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        nav a:hover {
-            background-color: #444; /* Lighter hover for dark theme */
-            color: #fff;
-        }
-
-        /* Hero Section Styles */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('images/hero-bg.jpg') no-repeat center center/cover; /* Placeholder hero background */
-            color: #fff;
-            text-align: center;
-            padding: 60px 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+            margin-bottom: 5px; /* Add space below logo when stacked */
+            height: 50px; /* Adjust logo size for smaller screens */
         }
 
         .hero h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            color: #fff;
+            font-size: 2.2em;
         }
 
         .hero p {
-            font-size: 1.3em;
-            margin-bottom: 30px;
+            font-size: 1em;
         }
 
-        .btn {
-            display: inline-block;
-            background-color: #6a3a1f; /* Original button color */
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            font-weight: bold;
-        }
-
-        .btn:hover {
-            background-color: #8c4c2a; /* Slightly lighter on hover */
-            transform: translateY(-2px);
-        }
-
-        /* Container Styles */
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
+        nav a {
+            padding: 0.8rem 0.8rem;
+            font-size: 0.9em;
         }
 
         .section {
-            background-color: #282828; /* Darker section background */
-            padding: 40px;
-            margin-bottom: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            padding: 30px 20px;
         }
 
-        .section h2 {
-            text-align: center;
-            margin-bottom: 30px;
-            color: #f4f4f4;
-            font-size: 2em;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 3px;
-            background-color: #6a3a1f;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Product Grid Styles */
-        .produk-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-            margin-top: 20px;
+        .produk-grid, .galeri-grid {
+            grid-template-columns: 1fr; /* Stack columns on smaller screens */
         }
 
         .produk-item {
-            background-color: #333; /* Darker product item */
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            padding-bottom: 20px; /* Add padding for text below image */
+            margin: 0 auto; /* Center single column items */
         }
 
-        .produk-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        form {
+            padding: 20px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        header {
+            padding: 1rem 0; /* Adjust padding for even smaller screens */
+        }
+        header h1 {
+            font-size: 1.8em;
+        }
+
+        .hero h1 {
+            font-size: 1.8em;
+        }
+
+        .hero p {
+            font-size: 0.9em;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        nav a {
+            flex: 1 1 auto; /* Allow links to wrap and take available space */
+            text-align: center;
+            padding: 0.7rem 0.5rem;
+            font-size: 0.8em;
+        }
+
+        .section {
+            padding: 20px 15px;
         }
 
         .produk-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 1px solid #444;
-        }
-
-        .produk-item h3 {
-            color: #f4f4f4;
-            margin: 20px 10px 10px;
-            font-size: 1.4em;
-        }
-
-        .produk-item p {
-            color: #ccc;
-            padding: 0 15px;
-            font-size: 0.95em;
-        }
-
-        /* Gallery Grid Styles */
-        .galeri-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .galeri-item {
-            background-color: #333; /* Darker gallery item */
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .galeri-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+            height: 180px;
         }
 
         .galeri-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
+            height: 200px;
         }
 
-        /* Testimonial Styles */
         blockquote {
-            background-color: #333; /* Darker blockquote */
-            border-left: 5px solid #6a3a1f;
-            margin: 20px 0;
-            padding: 15px 25px;
-            border-radius: 5px;
-            font-style: italic;
-            color: #ccc;
-            position: relative;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        blockquote p {
-            margin-bottom: 10px;
-            color: #e0e0e0;
-        }
-
-        blockquote cite {
-            display: block;
-            text-align: right;
-            font-style: normal;
-            font-weight: bold;
-            color: #6a3a1f;
-            margin-top: 10px;
-        }
-
-        /* Contact Form Styles */
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: #333; /* Darker form background */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-
-        form p {
-            margin-bottom: 15px;
-        }
-
-        form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-            color: #f4f4f4;
-        }
-
-        form input[type="text"],
-        form input[type="email"],
-        form textarea {
-            width: calc(100% - 20px);
-            padding: 12px;
-            margin-bottom: 10px;
-            border: 1px solid #555; /* Darker border */
-            border-radius: 4px;
-            background-color: #444; /* Darker input background */
-            color: #e0e0e0;
-            font-size: 1em;
-            box-sizing: border-box;
-            transition: border-color 0.3s ease;
-        }
-
-        form input[type="text"]:focus,
-        form input[type="email"]:focus,
-        form textarea:focus {
-            border-color: #6a3a1f;
-            outline: none;
-        }
-
-        form textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        form button.btn {
-            width: 100%;
             padding: 15px;
-            font-size: 1.1em;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
         }
 
-        /* Footer Styles */
-        footer {
-            background-color: #333; /* Darker footer */
-            color: #aaa;
-            text-align: center;
-            padding: 1.5rem 0;
-            margin-top: 30px;
-            font-size: 0.9em;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3);
+        form inputtype="text"],
+        form inputtype="email"],
+        form textarea {
+            width: 100%; /* Full width for inputs */
         }
+    }
+</style>
 
-        footer p {
-            margin: 5px 0;
-        }
-
-        /* Utility Styles */
-        a {
-            color: #8c4c2a; /* Slightly brighter link color */
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        a:hover {
-            color: #a35d36;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 2em;
-                flex-direction: column; /* Stack logo and text on smaller screens */
-            }
-            header .logo {
-                margin-bottom: 5px; /* Add space below logo when stacked */
-            }
-
-            .hero h1 {
-                font-size: 2.2em;
-            }
-
-            .hero p {
-                font-size: 1em;
-            }
-
-            nav a {
-                padding: 0.8rem 0.8rem;
-                font-size: 0.9em;
-            }
-
-            .section {
-                padding: 30px 20px;
-            }
-
-            .produk-grid, .galeri-grid {
-                grid-template-columns: 1fr; /* Stack columns on smaller screens */
-            }
-
-            .produk-item {
-                margin: 0 auto; /* Center single column items */
-            }
-
-            form {
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            .hero h1 {
-                font-size: 1.8em;
-            }
-
-            .hero p {
-                font-size: 0.9em;
-            }
-
-            nav {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-            }
-
-            nav a {
-                flex: 1 1 auto; /* Allow links to wrap and take available space */
-                text-align: center;
-                padding: 0.7rem 0.5rem;
-                font-size: 0.8em;
-            }
-
-            .section {
-                padding: 20px 15px;
-            }
-
-            .produk-item img {
-                height: 180px;
-            }
-
-            .galeri-item img {
-                height: 200px;
-            }
-
-            blockquote {
-                padding: 15px;
-            }
-
-            form input[type="text"],
-            form input[type="email"],
-            form textarea {
-                width: 100%; /* Full width for inputs */
-            }
-        }
-    </style>
 </head>
 <body>
+<header>
+    <div class="header-content">
+        <h1><img src="Images/logo.jpg" alt="Yeny Gorden Logo" class="logo"> Yeny Gorden</h1>
+        <p>Sentuhan Keindahan untuk Setiap Jendela</p>
+    </div>
+</header>
 
-    <header>
-        <div class="header-content">
-            <h1><img src="images/logo.png" alt="Yeny Gorden Logo" class="logo"> Yeny Gorden</h1>
-            <p>Sentuhan Keindahan untuk Setiap Jendela</p>
-        </div>
-    </header>
+<nav>
+    <a href="#tentang-kami">Tentang Kami</a>
+    <a href="#produk">Produk & Layanan</a>
+    <a href="#galeri">Galeri</a>
+    <a href="#testimonial">Testimonial</a>
+    <a href="#kontak">Kontak</a>
+    <a href="kalkulator.html">Kalkulator</a>
+</nav>
 
-    <nav>
-        <a href="#tentang-kami">Tentang Kami</a>
-        <a href="#produk">Produk & Layanan</a>
-        <a href="#galeri">Galeri</a>
-        <a href="#testimonial">Testimonial</a>
-        <a href="#kontak">Kontak</a>
-        <a href="kalkulator.html">Kalkulator</a>
-    </nav>
+<div class="hero">
+    <h1>Temukan Gorden Impian Anda di Yeny Gorden</h1>
+    <p>Kualitas Terbaik, Desain Menawan, Harga Terjangkau</p>
+    <a href="#kontak" class="btn">Konsultasi Gratis Sekarang!</a>
+</div>
 
-    <div class="hero">
-        <h1>Temukan Gorden Impian Anda di Yeny Gorden</h1>
-        <p>Kualitas Terbaik, Desain Menawan, Harga Terjangkau</p>
-        <a href="#kontak" class="btn">Konsultasi Gratis Sekarang!</a>
+<div class="container">
+    <div id="tentang-kami" class="section">
+        <h2>Tentang Yeny Gorden</h2>
+        <p style="text-align: justify;">
+            Yeny Gorden adalah penyedia gorden dan vitrase terkemuka di Purwokerto, Jawa Tengah, dengan pengalaman bertahun-tahun dalam mempercantik berbagai jenis ruangan. Kami berkomitmen untuk menyediakan produk gorden dan vitrase berkualitas tinggi yang tidak hanya berfungsi optimal dalam mengatur cahaya dan privasi, tetapi juga meningkatkan estetika dan kenyamanan hunian atau kantor Anda. Kami menawarkan beragam pilihan bahan, warna, dan desain, mulai dari gaya minimalis modern hingga klasik mewah. Kepuasan pelanggan adalah prioritas kami, didukung oleh layanan konsultasi, pengukuran, dan pemasangan yang profesional.
+        </p>
     </div>
 
-    <div class="container">
-        <div id="tentang-kami" class="section">
-            <h2>Tentang Yeny Gorden</h2>
-            <p style="text-align: justify;">
-                Yeny Gorden adalah penyedia gorden dan vitrase terkemuka di Purwokerto, Jawa Tengah, dengan pengalaman bertahun-tahun dalam mempercantik berbagai jenis ruangan. Kami berkomitmen untuk menyediakan produk gorden dan vitrase berkualitas tinggi yang tidak hanya berfungsi optimal dalam mengatur cahaya dan privasi, tetapi juga meningkatkan estetika dan kenyamanan hunian atau kantor Anda. Kami menawarkan beragam pilihan bahan, warna, dan desain, mulai dari gaya minimalis modern hingga klasik mewah. Kepuasan pelanggan adalah prioritas kami, didukung oleh layanan konsultasi, pengukuran, dan pemasangan yang profesional.
-            </p>
-        </div>
-
-        <div id="produk" class="section">
-            <h2>Produk & Layanan Kami</h2>
-            <div class="produk-grid">
-                <div class="produk-item">
-                   <img src="images/gorden1.jpg" alt="Gorden Minimalis">
-                    <h3>Gorden Minimalis</h3>
-                    <p>Desain simpel dan bersih, cocok untuk gaya interior kontemporer dan memberikan kesan lapang.</p>
-                </div>
-                <div class="produk-item">
-                    <img src="images/gorden2.jpg" alt="Gorden Klasik">
-                    <h3>Gorden Klasik</h3>
-                    <p>Sentuhan kemewahan dengan pilihan bahan premium dan motif elegan, untuk nuansa mewah.</p>
-                </div>
-                <div class="produk-item">
-                    <img src="images/gorden3.jpg" alt="Vitrase Jendela">
-                    <h3>Vitrase (Gorden Dalam)</h3>
-                    <p>Kain tipis transparan yang menambah privasi sekaligus tetap meneruskan cahaya alami ruangan.</p>
-                </div>
-                <div class="produk-item">
-                    <img src="images/gorden4.jpg" alt="Roll Blind & Vertical Blind">
-                    <h3>Roll Blind & Vertical Blind</h3>
-                    <p>Solusi praktis dan modern untuk kantor, apartemen, atau hunian dengan desain minimalis.</p>
-                </div>
+    <div id="produk" class="section">
+        <h2>Produk & Layanan Kami</h2>
+        <div class="produk-grid">
+            <div class="produk-item">
+               <img src="images/gorden1.jpg" alt="Gorden Minimalis">
+                <h3>Gorden Minimalis</h3>
+                <p>Desain simpel dan bersih, cocok untuk gaya interior kontemporer dan memberikan kesan lapang.</p>
             </div>
-            <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #8c4c2a;">
-                Kami juga melayani jasa pengukuran dan pemasangan gorden di lokasi Anda dengan tim yang berpengalaman.
-            </p>
-        </div>
-
-        <div id="galeri" class="section">
-            <h2>Galeri Proyek Kami</h2>
-            <p style="text-align: center; margin-bottom: 25px; color: #ccc;">
-                Lihat hasil-hasil pemasangan gorden dan vitrase kami yang telah mempercantik berbagai ruangan dan memberikan inspirasi untuk Anda.
-            </p>
-            <div class="galeri-grid">
-                <div class="galeri-item"><img src="images/rumah.jpg" alt="Gorden Rumah Minimalis"></div>
-                <div class="galeri-item"><img src="images/kemenagbms.jpg" alt="Gorden Kantor Modern"></div>
-                <div class="galeri-item"><img src="images/kantor.jpg" alt="Gorden Apartemen Klasik"></div>
-                <div class="galeri-item"><img src="images/kantor2.jpg" alt="Vitrase Hotel"></div>
-                <div class="galeri-item"><img src="images/hotel.jpg" alt="Gorden Rumah Modern"></div>
-                <div class="galeri-item"><img src="images/villa.jpg" alt="Roll Blind Kantor"></div>
-                <div class="galeri-item"><img src="images/gorden5.jpg" alt="Gorden Ruang Tamu"></div>
-                <div class="galeri-item"><img src="images/gorden6.jpg" alt="Gorden Villa"></div>
-                <div class="galeri-item"><img src="images/gorden7.jpg" alt="Gorden Kamar Tidur"></div>
+            <div class="produk-item">
+                <img src="images/gorden2.jpg" alt="Gorden Klasik">
+                <h3>Gorden Klasik</h3>
+                <p>Sentuhan kemewahan dengan pilihan bahan premium dan motif elegan, untuk nuansa mewah.</p>
+            </div>
+            <div class="produk-item">
+                <img src="images/gorden3.jpg" alt="Vitrase Jendela">
+                <h3>Vitrase (Gorden Dalam)</h3>
+                <p>Kain tipis transparan yang menambah privasi sekaligus tetap meneruskan cahaya alami ruangan.</p>
+            </div>
+            <div class="produk-item">
+                <img src="images/gorden4.jpg" alt="Roll Blind & Vertical Blind">
+                <h3>Roll Blind & Vertical Blind</h3>
+                <p>Solusi praktis dan modern untuk kantor, apartemen, atau hunian dengan desain minimalis.</p>
             </div>
         </div>
+        <p style="text-align: center; margin-top: 30px; font-weight: bold; color: #8c4c2a;">
+            Kami juga melayani jasa pengukuran dan pemasangan gorden di lokasi Anda dengan tim yang berpengalaman.
+        </p>
+    </div>
 
-        <div id="testimonial" class="section">
-            <h2>Apa Kata Pelanggan Kami?</h2>
-            <blockquote>
-                <p>"Gorden dari Yeny Gorden sangat berkualitas, bahannya tebal dan jahitannya rapi. Pelayanannya juga sangat ramah dan responsif. Puas sekali!"</p>
-                <cite>- Ibu Amelia, Purwokerto</cite>
-            </blockquote>
-            <blockquote>
-                <p>"Saya sangat terbantu dengan saran desain dari tim Yeny Gorden. Hasil pemasangan juga cepat dan presisi. Ruangan jadi terlihat jauh lebih mewah!"</p>
-                <cite>- Bapak Rio, Banyumas</cite>
-            </blockquote>
-            <blockquote>
-                <p>"Pilihan gordennya sangat beragam, jadi bisa disesuaikan dengan tema rumah. Harganya juga kompetitif. Rekomendasi banget untuk yang cari gorden berkualitas!"</p>
-                <cite>- Keluarga Susanto, Kebumen</cite>
-            </blockquote>
-            <blockquote>
-                <p>"Layanan Yeny Gorden benar-benar profesional, dari konsultasi sampai pemasangan semua berjalan lancar. Hasilnya sesuai harapan, rumah jadi lebih cantik."</p>
-                <cite>- Bapak Budi, Cilacap</cite>
-            </blockquote>
-            <blockquote>
-                <p>"Saya memesan vitrase untuk kantor, hasilnya sangat memuaskan. Materialnya bagus dan pengerjaannya cepat. Pasti akan pesan lagi di sini."</p>
-                <cite>- Mbak Indah, Purbalingga</cite>
-            </blockquote>
-            <blockquote>
-                <p>"Baru kali ini menemukan penyedia gorden yang mau mendengarkan kebutuhan detail pelanggan. Yeny Gorden memberikan solusi terbaik dengan harga yang bersaing."</p>
-                <cite>- Bapak Dani, Kroya</cite>
-            </blockquote>
-        </div>
-
-        <div id="kontak" class="section">
-            <h2>Hubungi Kami</h2>
-            <p style="text-align: center; color: #ccc;">
-                Siap untuk mempercantik ruangan Anda dengan gorden dan vitrase terbaik? Jangan ragu hubungi Yeny Gorden sekarang!
-            </p>
-            <ul style="list-style-type: none; padding: 0; text-align: center; font-size: 1.1em;">
-                <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Telepon/WhatsApp:</strong></li>
-                <li style="margin-bottom: 15px;"><a href="https://wa.me/6289504215020" style="color: #8c4c2a; text-decoration: none;">0895-0421-5020</a></li>
-                <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Email:</strong></li>
-                <li style="margin-bottom: 15px;"><a href="mailto:yenygorden@gmail.com" style="color: #8c4c2a; text-decoration: none;">yenygorden@gmail.com</a></li>
-                <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Alamat:</strong></li>
-                <li style="color: #ccc;">Jl. Jend. Sudirman, RT.5/RW.1, Kalibakal, Berkoh, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53146</li>
-            </ul>
-            <p style="text-align: center; margin-top: 30px; color: #ccc;">Atau isi formulir di bawah ini dan kami akan segera menghubungi Anda:</p>
-            <form action="https://formspree.io/f/mvganado" method="POST">
-                <p><label for="nama">Nama Lengkap:</label><br><input type="text" id="nama" name="Nama Pengirim" required=""></p>
-                <p><label for="email">Alamat Email:</label><br><input type="email" id="email" name="_replyto" required=""></p>
-                <p><label for="pesan">Pesan/Pertanyaan Anda:</label><br><textarea id="pesan" name="Pesan" rows="5" required=""></textarea></p>
-                <button type="submit" class="btn">Kirim Pesan</button>
-            </form>
+    <div id="galeri" class="section">
+        <h2>Galeri Proyek Kami</h2>
+        <p style="text-align: center; margin-bottom: 25px; color: #ccc;">
+            Lihat hasil-hasil pemasangan gorden dan vitrase kami yang telah mempercantik berbagai ruangan dan memberikan inspirasi untuk Anda.
+        </p>
+        <div class="galeri-grid">
+            <div class="galeri-item"><img src="images/rumah.jpg" alt="Gorden Rumah Minimalis"></div>
+            <div class="galeri-item"><img src="images/kemenagbms.jpg" alt="Gorden Kantor Modern"></div>
+            <div class="galeri-item"><img src="images/kantor.jpg" alt="Gorden Apartemen Klasik"></div>
+            <div class="galeri-item"><img src="images/kantor2.jpg" alt="Vitrase Hotel"></div>
+            <div class="galeri-item"><img src="images/hotel.jpg" alt="Gorden Rumah Modern"></div>
+            <div class="galeri-item"><img src="images/villa.jpg" alt="Roll Blind Kantor"></div>
+            <div class="galeri-item"><img src="images/gorden5.jpg" alt="Gorden Ruang Tamu"></div>
+            <div class="galeri-item"><img src="images/gorden6.jpg" alt="Gorden Villa"></div>
+            <div class="galeri-item"><img src="images/gorden7.jpg" alt="Gorden Kamar Tidur"></div>
         </div>
     </div>
 
-    <footer>
-        <p>© 2020 Yeny Gorden.</p>
-        <p>Dibuat dengan ❤️ di Purwokerto.</p>
-    </footer>
+    <div id="testimonial" class="section">
+        <h2>Apa Kata Pelanggan Kami?</h2>
+        <blockquote>
+            <p>"Gorden dari Yeny Gorden sangat berkualitas, bahannya tebal dan jahitannya rapi. Pelayanannya juga sangat ramah dan responsif. Puas sekali!"</p>
+            <cite>- Ibu Amelia, Purwokerto</cite>
+        </blockquote>
+        <blockquote>
+            <p>"Saya sangat terbantu dengan saran desain dari tim Yeny Gorden. Hasil pemasangan juga cepat dan presisi. Ruangan jadi terlihat jauh lebih mewah!"</p>
+            <cite>- Bapak Rio, Banyumas</cite>
+        </blockquote>
+        <blockquote>
+            <p>"Pilihan gordennya sangat beragam, jadi bisa disesuaikan dengan tema rumah. Harganya juga kompetitif. Rekomendasi banget untuk yang cari gorden berkualitas!"</p>
+            <cite>- Keluarga Susanto, Kebumen</cite>
+        </blockquote>
+        <blockquote>
+            <p>"Layanan Yeny Gorden benar-benar profesional, dari konsultasi sampai pemasangan semua berjalan lancar. Hasilnya sesuai harapan, rumah jadi lebih cantik."</p>
+            <cite>- Bapak Budi, Cilacap</cite>
+        </blockquote>
+        <blockquote>
+            <p>"Saya memesan vitrase untuk kantor, hasilnya sangat memuaskan. Materialnya bagus dan pengerjaannya cepat. Pasti akan pesan lagi di sini."</p>
+            <cite>- Mbak Indah, Purbalingga</cite>
+        </blockquote>
+        <blockquote>
+            <p>"Baru kali ini menemukan penyedia gorden yang mau mendengarkan kebutuhan detail pelanggan. Yeny Gorden memberikan solusi terbaik dengan harga yang bersaing."</p>
+            <cite>- Bapak Dani, Kroya</cite>
+        </blockquote>
+    </div>
+
+    <div id="kontak" class="section">
+        <h2>Hubungi Kami</h2>
+        <p style="text-align: center; color: #ccc;">
+            Siap untuk mempercantik ruangan Anda dengan gorden dan vitrase terbaik? Jangan ragu hubungi Yeny Gorden sekarang!
+        </p>
+        <ul style="list-style-type: none; padding: 0; text-align: center; font-size: 1.1em;">
+            <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Telepon/WhatsApp:</strong></li>
+            <li style="margin-bottom: 15px;"><a href="https://wa.me/6289504215020" style="color: #8c4c2a; text-decoration: none;">0895-0421-5020</a></li>
+            <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Email:</strong></li>
+            <li style="margin-bottom: 15px;"><a href="mailto:yenygorden@gmail.com" style="color: #8c4c2a; text-decoration: none;">yenygorden@gmail.com</a></li>
+            <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Alamat:</strong></li>
+            <li style="color: #ccc;">Jl. Jend. Sudirman, RT.5/RW.1, Kalibakal, Berkoh, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53146</li>
+        </ul>
+        <p style="text-align: center; margin-top: 30px; color: #ccc;">Atau isi formulir di bawah ini dan kami akan segera menghubungi Anda:</p>
+        <form action="https://formspree.io/f/mvganado" method="POST">
+            <p><label for="nama">Nama Lengkap:</label><br><input type="text" id="nama" name="Nama Pengirim" required=""></p>
+            <p><label for="email">Alamat Email:</label><br><input type="email" id="email" name="_replyto" required=""></p>
+            <p><label for="pesan">Pesan/Pertanyaan Anda:</label><br><textarea id="pesan" name="Pesan" rows="5" required=""></textarea></p>
+            <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+    </div>
+</div>
+
+<footer>
+    <p>© 2020 Yeny Gorden.</p>
+    <p>Dibuat dengan ❤️ di Purwokerto.</p>
+</footer>
 
 </body>
 </html>
