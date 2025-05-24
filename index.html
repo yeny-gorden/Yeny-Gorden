@@ -31,6 +31,15 @@
             margin: 0;
             font-size: 2.5em;
             color: #f4f4f4;
+            display: flex; /* Untuk menata logo dan teks sejajar */
+            align-items: center; /* Pusatkan vertikal */
+            justify-content: center; /* Pusatkan horizontal */
+        }
+
+        header h1 img {
+            height: 50px; /* Sesuaikan tinggi logo */
+            vertical-align: middle; /* Memastikan logo sejajar dengan teks */
+            margin-right: 10px; /* Jarak antara logo dan teks */
         }
 
         header p {
@@ -314,6 +323,11 @@
                 font-size: 2em;
             }
 
+            header h1 img {
+                height: 40px; /* Sesuaikan tinggi logo di layar kecil */
+                margin-right: 8px;
+            }
+
             .hero h1 {
                 font-size: 2.2em;
             }
@@ -347,6 +361,11 @@
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.8em;
+            }
+
+            header h1 img {
+                height: 30px; /* Tinggi logo lebih kecil lagi di ponsel */
+                margin-right: 5px;
             }
 
             .hero h1 {
@@ -397,7 +416,7 @@
 <body>
 
     <header>
-        <h1>Yeny Gorden</h1>
+        <h1><img src="images/logo.png" alt="Yeny Gorden Logo">Yeny Gorden</h1>
         <p>Sentuhan Keindahan untuk Setiap Jendela</p>
     </header>
 
@@ -520,6 +539,8 @@
                 <li style="margin-bottom: 15px;"><a href="https://wa.me/6289504215020" style="color: #FFD700; text-decoration: none;">0895-0421-5020</a></li>
                 <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Email:</strong></li>
                 <li style="margin-bottom: 15px;"><a href="mailto:yenygorden@gmail.com" style="color: #FFD700; text-decoration: none;">yenygorden@gmail.com</a></li>
+                <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Facebook:</strong></li>
+                <li style="margin-bottom: 15px;"><a href="https://www.facebook.com/yenygorden" style="color: #FFD700; text-decoration: none;">Yeny Gorden</a></li>
                 <li style="margin-bottom: 5px; color: #f4f4f4;"><strong>Alamat:</strong></li>
                 <li style="color: #ccc;">Jl. Jend. Sudirman, RT.5/RW.1, Kalibakal, Berkoh, Kec. Purwokerto Sel., Kabupaten Banyumas, Jawa Tengah 53146</li>
             </ul>
@@ -535,6 +556,7 @@
 
     <footer>
         <p>© 2020 Yeny Gorden.</p>
+        <p><a href="https://www.facebook.com/yenygorden" style="color: #aaa;">Temukan kami di Facebook!</a></p>
         <p>Dibuat dengan ❤️ di Purwokerto.</p>
     </footer>
 
